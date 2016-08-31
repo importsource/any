@@ -57,3 +57,5 @@ public class NewTest {
 ##Convert Junit to TestNG:
 
 右键junit测试类所在package，“TestNG”==>"Convert to TestNG". ALL is ok!
+
+如果你想了解test的原理，其实原理很简单，请移步https://github.com/importsource/itest
