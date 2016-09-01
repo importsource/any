@@ -11,6 +11,7 @@ Check-in tests.  These tests should be run before you submit new code.  They sho
 Functional tests.  These tests should cover all the functionalities of your software and be run at least once a day, although ideally you would want to run them continuously.
 Typically, check-in tests are a subset of functional tests.  TestNG allows you to specify this in a very intuitive way with test groups.  For example, you could structure your test by saying that your entire test class belongs to the "functest" group, and additionally that a couple of methods belong to the group "checkintest":
 
+##TestClz
 ```java
 public class UserServiceTest {
   @Test(groups = { "functest", "checkintest" })
@@ -31,7 +32,7 @@ public class UserServiceTest {
 }
 ```
 
-
+##Conf
 ```xml
 <test name="UserServiceTest">
 		<groups>
@@ -44,3 +45,6 @@ public class UserServiceTest {
 		</classes>
 	</test>
 ```
+
+##Result
+![](static/images/testnggroup.png)
