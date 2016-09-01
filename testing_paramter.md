@@ -156,8 +156,7 @@ public Iterator<Object[]> createData() {
 }
 ```
 
-If you declare your @DataProvider as taking a java.lang.reflect.Method as first parameter, TestNG will pass the current test method for this first parameter. This is particularly useful when several test methods use the same @DataProvider and you want it to return different values depending on which test method it is supplying data for.
-For example, the following code prints the name of the test method inside its @DataProvider:
+DataProvider也支持反射，像下面这样可以直接获得方法名：
 
 ```java
 @DataProvider(name = "dp")
@@ -175,23 +174,26 @@ public void test2(String s) {
 }
 ```
 
-and will therefore display:
+打印结果:
+
 ```log
 test1
 test2
 ```
 
-Data providers can run in parallel with the attribute parallel:
+Data providers 也支持parallel ，像下面这样：
 ```java
 @DataProvider(parallel = true)
 // ...
 ```
 
-Parallel data providers running from an XML file share the same pool of threads, which has a size of 10 by default. You can modify this value in the <suite> tag of your XML file:
+Parallel data providers的默认线程池的size是10。你可以在xml中修改：
+
 ```xml
 <suite name="Suite1" data-provider-thread-count="20" >
 ...
 
 ```
 
-If you want to run a few specific data providers in a different thread pool, you need to run them from a different XML file.
+
+如果你想在不同的线程池不同的dataprovider，你需要通过运行不同的xml文件来实现。
