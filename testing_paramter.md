@@ -107,9 +107,10 @@ Anne 37
 ```
 
 
-A @Test method specifies its Data Provider with the dataProvider attribute.  This name must correspond to a method on the same class annotated with @DataProvider(name="...") with a matching name.
-By default, the data provider will be looked for in the current test class or one of its base classes. If you want to put your data provider in a different class, it needs to be a static method or a class with a non-arg constructor, and you specify the class where it can be found in the dataProviderClass attribute:
 
+默认的话，dataProvider会被在当前类或者父类中寻找。如果你想把你的数据provider放在其他类中，那么就需要是一个static的方法或者一个无参constructor，然后你再在测试类需要用到这个数据的地方通过dataProviderClass 属性来引入，像下面这样：
+
+```java
 public class StaticProvider {
   @DataProvider(name = "create")
   public static Object[][] createData() {
@@ -118,16 +119,26 @@ public class StaticProvider {
     };
   }
 }
- 
+```
+ 在测试类中引入：
+ ```java
 public class MyTest {
   @Test(dataProvider = "create", dataProviderClass = StaticProvider.class)
   public void test(Integer n) {
     // ...
   }
 }
+```
+
+data provider也支持注入。
+
 The data provider supports injection too. TestNG will use the test context for the injection. The Data Provider method can return one of the following two types:
-An array of array of objects (Object[][]) where the first dimension's size is the number of times the test method will be invoked and the second dimension size contains an array of objects that must be compatible with the parameter types of the test method. This is the cast illustrated by the example above.
-An Iterator<Object[]>. The only difference with Object[][] is that an Iterator lets you create your test data lazily. TestNG will invoke the iterator and then the test method with the parameters returned by this iterator one by one. This is particularly useful if you have a lot of parameter sets to pass to the method and you don't want to create all of them upfront.
+
+* An array of array of objects (Object[][]) where the first dimension's size is the number of times the test method will be invoked and the second dimension size contains an array of objects that must be compatible with the parameter types of the test method. This is the cast illustrated by the example above.
+
+* An Iterator<Object[]>. The only difference with Object[][] is that an Iterator lets you create your test data lazily. TestNG will invoke the iterator and then the test method with the parameters returned by this iterator one by one. This is particularly useful if you have a lot of parameter sets to pass to the method and you don't want to create all of them upfront.
+
+
 Here is an example of this feature:
 
 ```java
