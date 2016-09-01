@@ -46,13 +46,18 @@ public void beforeTest(String ds, String driver) {
 }
 ```
 
-This time, the two Java parameter ds and driver will receive the value given to the properties datasource and jdbc-driver respectively. 
-Parameters can be declared optional with the Optional annotation:
 
+
+你可以使用Optional annotation把参数设置为可选：
+
+```java
 @Parameters("db")
 @Test
 public void testNonExistentParameter(@Optional("mysql") String db) { ... }
-If no parameter named "db" is found in your testng.xml file, your test method will receive the default value specified inside the @Optional annotation: "mysql".
+```
+
+
+如果在xml文件中没有名称为db的参数，那么你的测试方法将会收到一个默认的value，这个默认值为@Optional中配置的"mysql"
 The @Parameters annotation can be placed at the following locations:
 
 On any method that already has a @Test, @Before/After or @Factory annotation.
