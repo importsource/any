@@ -1,4 +1,4 @@
- TestNG的亮点之一就是Groups。这个在新增加功能以后，只对check-in-function进行测试。就可以用分组来做。
+ TestNG的亮点之一就是Groups。这个在新增加功能以后，只对check-in-function进行测试的时候很有用。你可以对测试的方法进行分组。
  
 #Groups
 
