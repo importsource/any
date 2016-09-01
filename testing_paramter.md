@@ -130,16 +130,24 @@ public class MyTest {
 }
 ```
 
-data provider也支持注入。
-
-The data provider supports injection too. TestNG will use the test context for the injection. The Data Provider method can return one of the following two types:
-
-* An array of array of objects (Object[][]) where the first dimension's size is the number of times the test method will be invoked and the second dimension size contains an array of objects that must be compatible with the parameter types of the test method. This is the cast illustrated by the example above.
-
-* An Iterator<Object[]>. The only difference with Object[][] is that an Iterator lets you create your test data lazily. TestNG will invoke the iterator and then the test method with the parameters returned by this iterator one by one. This is particularly useful if you have a lot of parameter sets to pass to the method and you don't want to create all of them upfront.
 
 
-Here is an example of this feature:
+ 
+
+data provider也支持injection。TestNG将会使用test context。
+
+Data Provider 方法可以返回下列两种类型的数据：
+
+
+* An array of array of objects (Object[][])。
+
+*  and you don't want to create all of them upfront.
+   这个和Object[][]唯一的不同点就是Iterator可以允许你延迟创建的你的测试数据。lazy pattern，you know。
+TestNG将会调用这个iterator，然后带参数的那个测试方法就会通过iterator一个一个return 数据。
+
+  *note*：这个在你需要给一个方法传递很多参数而你又不想一次性把所有的数据都创建好的情况下非常有用
+
+下面是例子：
 
 ```java
 @DataProvider(name = "test1")
@@ -150,6 +158,7 @@ public Iterator<Object[]> createData() {
 
 If you declare your @DataProvider as taking a java.lang.reflect.Method as first parameter, TestNG will pass the current test method for this first parameter. This is particularly useful when several test methods use the same @DataProvider and you want it to return different values depending on which test method it is supplying data for.
 For example, the following code prints the name of the test method inside its @DataProvider:
+
 ```java
 @DataProvider(name = "dp")
 public Object[][] createData(Method m) {
