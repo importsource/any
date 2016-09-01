@@ -57,18 +57,26 @@ public void testNonExistentParameter(@Optional("mysql") String db) { ... }
 ```
 
 
-如果在xml文件中没有名称为db的参数，那么你的测试方法将会收到一个默认的value，这个默认值为@Optional中配置的"mysql"
-The @Parameters annotation can be placed at the following locations:
+如果在xml文件中没有名称为db的参数，那么你的测试方法将会收到一个默认的value，这个默认值为@Optional中配置的"mysql"。
 
-On any method that already has a @Test, @Before/After or @Factory annotation.
-On at most one constructor of your test class.  In this case, TestNG will invoke this particular constructor with the parameters initialized to the values specified in testng.xml whenever it needs to instantiate your test class.  This feature can be used to initialize fields inside your classes to values that will then be used by your test methods.
+ @Parameters annotation可以被用在如下位置:
+
+*  On any method that already has a @Test, @Before/After or @Factory annotation.
+*  On at most one constructor of your test class.  In this case, TestNG will invoke this particular constructor with the parameters initialized to the values specified in testng.xml whenever it needs to instantiate your test class.  This feature can be used to initialize fields inside your classes to values that will then be used by your test methods.
+
 Notes:
 
-The XML parameters are mapped to the Java parameters in the same order as they are found in the annotation, and TestNG will issue an error if the numbers don't match.
-Parameters are scoped. In testng.xml, you can declare them either under a <suite> tag or under <test>. If two parameters have the same name, it's the one defined in <test> that has precedence. This is convenient if you need to specify a parameter applicable to all your tests and override its value only for certain tests.
-5.6.2 - Parameters with DataProviders
+* The XML parameters are mapped to the Java parameters in the same order as they are found in the annotation, and TestNG will issue an error if the numbers don't match.
+* Parameters are scoped. In testng.xml, you can declare them either under a <suite> tag or under <test>. If two parameters have the same name, it's the one defined in <test> that has precedence. This is convenient if you need to specify a parameter applicable to all your tests and override its value only for certain tests.
+* 
 
-Specifying parameters in testng.xml might not be sufficient if you need to pass complex parameters, or parameters that need to be created from Java (complex objects, objects read from a property file or a database, etc...). In this case, you can use a Data Provider to supply the values you need to test.  A Data Provider is a method on your class that returns an array of array of objects.  This method is annotated with @DataProvider:
+2 - 带DataProviders的参数
+
+Specifying parameters in testng.xml might not be sufficient if you need to pass complex parameters, or parameters that need to be created from Java (complex objects, objects read from a property file or a database, etc...). In this case, you can use a Data Provider to supply the values you need to test.  A Data Provider is a method on your class that returns an array of array of objects.  
+
+在xml中初始化一些简单的数据也许并不能满足你的胃口。大部分时候你需要intial更复杂的数据。
+
+This method is annotated with @DataProvider:
 
 //This method will provide data to any test method that declares that its Data Provider
 //is named "test1"
