@@ -129,13 +129,17 @@ The data provider supports injection too. TestNG will use the test context for t
 An array of array of objects (Object[][]) where the first dimension's size is the number of times the test method will be invoked and the second dimension size contains an array of objects that must be compatible with the parameter types of the test method. This is the cast illustrated by the example above.
 An Iterator<Object[]>. The only difference with Object[][] is that an Iterator lets you create your test data lazily. TestNG will invoke the iterator and then the test method with the parameters returned by this iterator one by one. This is particularly useful if you have a lot of parameter sets to pass to the method and you don't want to create all of them upfront.
 Here is an example of this feature:
+
+```java
 @DataProvider(name = "test1")
 public Iterator<Object[]> createData() {
   return new MyIterator(DATA);
 }
+```
+
 If you declare your @DataProvider as taking a java.lang.reflect.Method as first parameter, TestNG will pass the current test method for this first parameter. This is particularly useful when several test methods use the same @DataProvider and you want it to return different values depending on which test method it is supplying data for.
 For example, the following code prints the name of the test method inside its @DataProvider:
-
+```java
 @DataProvider(name = "dp")
 public Object[][] createData(Method m) {
   System.out.println(m.getName());  // print test method name
@@ -149,13 +153,25 @@ public void test1(String s) {
 @Test(dataProvider = "dp")
 public void test2(String s) {
 }
+```
+
 and will therefore display:
+```log
 test1
 test2
+```
+
 Data providers can run in parallel with the attribute parallel:
+```java
 @DataProvider(parallel = true)
 // ...
+```
+
 Parallel data providers running from an XML file share the same pool of threads, which has a size of 10 by default. You can modify this value in the <suite> tag of your XML file:
+```xml
 <suite name="Suite1" data-provider-thread-count="20" >
 ...
+
+```
+
 If you want to run a few specific data providers in a different thread pool, you need to run them from a different XML file.
