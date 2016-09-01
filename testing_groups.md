@@ -1,6 +1,6 @@
  TestNG的亮点之一就是Groups。这个在新增加功能以后，只对check-in-function进行测试。就可以用分组来做。
  
- #group
+ #Groups
 
 TestNG allows you to perform sophisticated groupings of test methods. Not only can you declare that methods belong to groups, but you can also specify groups that contain other groups. Then TestNG can be invoked and asked to include a certain set of groups (or regular expressions) while excluding another set.  This gives you maximum flexibility in how you partition your tests and doesn't require you to recompile anything if you want to run two different sets of tests back to back.
 
