@@ -1,4 +1,6 @@
  TestNG的亮点之一就是Groups。这个在新增加功能以后，只对check-in-function进行测试。就可以用分组来做。
+ 
+ #group
 
 TestNG allows you to perform sophisticated groupings of test methods. Not only can you declare that methods belong to groups, but you can also specify groups that contain other groups. Then TestNG can be invoked and asked to include a certain set of groups (or regular expressions) while excluding another set.  This gives you maximum flexibility in how you partition your tests and doesn't require you to recompile anything if you want to run two different sets of tests back to back.
 
@@ -6,7 +8,7 @@ Groups are specified in your testng.xml file and can be found either under the <
 
 For example, it is quite common to have at least two categories of tests
 
-* Check-in tests.  These tests should be run before you submit new code.  They should typically be fast and just make sure no basic functionality was broken.
+* Check-in tests.  **These tests should be run before you submit new code.**  They should typically be fast and just make sure no basic functionality was broken.
  
 * Functional tests.  These tests should cover all the functionalities of your software and be run at least once a day, although ideally you would want to run them continuously.
 
@@ -49,3 +51,23 @@ public class UserServiceTest {
 
 ##Result
 ![](static/images/testnggroup.png)
+
+
+
+#Method groups
+
+你可以通过include和exclude进行过滤方法。
+
+```xml
+<test name="Test1">
+  <classes>
+    <class name="example1.Test1">
+      <methods>
+        <include name=".*enabledTestMethod.*"/>
+        <exclude name=".*brokenTestMethod.*"/>
+      </methods>
+     </class>
+  </classes>
+</test>
+
+```
