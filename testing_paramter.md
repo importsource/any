@@ -1,34 +1,47 @@
-empty
+#Parameters
+
+testng的另外一个亮点就是Parameters。
+
+在单元测试的过程中。我们经常初始化一些数据。过去我们需要在每个方法中都要初始化一遍。现在通过testng的paramter，我们可以一次性初始化好数据。
+
+支持两种方式来set我们的paramters：
+
+* testng.xml 
+* programmatically 
 
 
-5.6 - Parameters
-
-Test methods don't have to be parameterless.  You can use an arbitrary number of parameters on each of your test method, and you instruct TestNG to pass you the correct parameters with the @Parameters annotation.
-
-There are two ways to set these parameters:  with testng.xml or programmatically.
-
-5.6.1 - Parameters from testng.xml
+1 - Parameters from testng.xml
 
 If you are using simple values for your parameters, you can specify them in your testng.xml:
+
+```java
 @Parameters({ "first-name" })
 @Test
 public void testSingleString(String firstName) {
   System.out.println("Invoked testString " + firstName);
   assert "Cedric".equals(firstName);
 }
+```
+
 In this code, we specify that the parameter firstName of your Java method should receive the value of the XML parameter called first-name.  This XML parameter is defined in testng.xml:
+```xml
+
 <suite name="My suite">
   <parameter name="first-name"  value="Cedric"/>
   <test name="Simple example">
-  <-- ... -->
-The same technique can be used for @Before/After and @Factory annotations:
+</suite>
 
+```
+The same technique can be used for @Before/After and @Factory annotations:
+```java
 @Parameters({ "datasource", "jdbcDriver" })
 @BeforeMethod
 public void beforeTest(String ds, String driver) {
   m_dataSource = ...;                              // look up the value of datasource
   m_jdbcDriver = driver;
 }
+```
+
 This time, the two Java parameter ds and driver will receive the value given to the properties datasource and jdbc-driver respectively. 
 Parameters can be declared optional with the Optional annotation:
 
