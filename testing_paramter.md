@@ -72,12 +72,13 @@ Notes:
 
 2 - 带DataProviders的参数
 
-Specifying parameters in testng.xml might not be sufficient if you need to pass complex parameters, or parameters that need to be created from Java (complex objects, objects read from a property file or a database, etc...). In this case, you can use a Data Provider to supply the values you need to test.  A Data Provider is a method on your class that returns an array of array of objects.  
 
-在xml中初始化一些简单的数据也许并不能满足你的胃口。大部分时候你需要intial更复杂的数据。
+
+在xml中初始化一些简单的数据也许并不能满足你的胃口。大部分时候你需要intial更复杂的数据。或者这些数据是来自一个property 文件或者db，等等。在这种情况下，你可以使用DataProvider 来初始化数据。一个DataProvider 其实就是你的类里边的一个方法，这个方法返回了一个数组而已。
 
 This method is annotated with @DataProvider:
 
+```java
 //This method will provide data to any test method that declares that its Data Provider
 //is named "test1"
 @DataProvider(name = "test1")
@@ -87,6 +88,7 @@ public Object[][] createData1() {
    { "Anne", new Integer(37)},
  };
 }
+
  
 //This test method declares that its data should be supplied by the Data Provider
 //named "test1"
@@ -94,9 +96,17 @@ public Object[][] createData1() {
 public void verifyData1(String n1, Integer n2) {
  System.out.println(n1 + " " + n2);
 }
-will print
+
+```
+
+打印结果：
+
+```log
 Cedric 36
 Anne 37
+```
+
+
 A @Test method specifies its Data Provider with the dataProvider attribute.  This name must correspond to a method on the same class annotated with @DataProvider(name="...") with a matching name.
 By default, the data provider will be looked for in the current test class or one of its base classes. If you want to put your data provider in a different class, it needs to be a static method or a class with a non-arg constructor, and you specify the class where it can be found in the dataProviderClass attribute:
 
