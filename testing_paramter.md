@@ -10,9 +10,9 @@ testng的另外一个亮点就是Parameters。
 * programmatically 
 
 
-1 - Parameters from testng.xml
+1 - 通过 testng.xml 设置参数：
 
-If you are using simple values for your parameters, you can specify them in your testng.xml:
+如果你只是想传入一些简单的value，你可以在你的testng.xml中来定义：
 
 ```java
 @Parameters({ "first-name" })
@@ -23,7 +23,8 @@ public void testSingleString(String firstName) {
 }
 ```
 
-In this code, we specify that the parameter firstName of your Java method should receive the value of the XML parameter called first-name.  This XML parameter is defined in testng.xml:
+像这样：
+
 ```xml
 
 <suite name="My suite">
@@ -32,7 +33,10 @@ In this code, we specify that the parameter firstName of your Java method should
 </suite>
 
 ```
-The same technique can be used for @Before/After and @Factory annotations:
+
+
+这种做法同样适用于那些annotation方法，比如@Before/After and @Factory ：
+
 ```java
 @Parameters({ "datasource", "jdbcDriver" })
 @BeforeMethod
