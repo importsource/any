@@ -4,13 +4,13 @@ testng的另外一个亮点就是Parameters。
 
 在单元测试的过程中。我们经常初始化一些数据。过去我们需要在每个方法中都要初始化一遍。现在通过testng的paramter，我们可以一次性初始化好数据。
 
-支持两种方式来set我们的paramters：
+**支持两种方式来set我们的paramters：**
 
-* testng.xml 
-* programmatically 
+* `testng.xml` 
+* `programmatically` 
 
 
-1 - 通过 testng.xml 设置参数：
+##1 - 通过 testng.xml 设置参数：
 
 如果你只是想传入一些简单的value，你可以在你的testng.xml中来定义：
 
@@ -70,7 +70,7 @@ Notes:
 * Parameters are scoped. In testng.xml, you can declare them either under a <suite> tag or under <test>. If two parameters have the same name, it's the one defined in <test> that has precedence. This is convenient if you need to specify a parameter applicable to all your tests and override its value only for certain tests.
 * 
 
-2 - 带DataProviders的参数
+##2 - 带DataProviders的参数
 
 
 
@@ -139,9 +139,9 @@ data provider也支持injection。TestNG将会使用test context。
 Data Provider 方法可以返回下列两种类型的数据：
 
 
-* An array of array of objects (Object[][])。
+* An array of array of objects (Object[][])。上面的例子就是。
 
-*  and you don't want to create all of them upfront.
+* Iterator。
    这个和Object[][]唯一的不同点就是Iterator可以允许你延迟创建的你的测试数据。lazy pattern，you know。
 TestNG将会调用这个iterator，然后带参数的那个测试方法就会通过iterator一个一个return 数据。
 
@@ -156,7 +156,7 @@ public Iterator<Object[]> createData() {
 }
 ```
 
-DataProvider也支持反射，像下面这样可以直接获得方法名：
+**DataProvider也支持反射**，像下面这样可以直接获得方法名：
 
 ```java
 @DataProvider(name = "dp")
@@ -181,7 +181,7 @@ test1
 test2
 ```
 
-Data providers 也支持parallel ，像下面这样：
+**Data providers 也支持parallel** ，像下面这样：
 ```java
 @DataProvider(parallel = true)
 // ...
