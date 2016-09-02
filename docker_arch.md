@@ -90,8 +90,12 @@ There are already several projects underway to develop more drivers. Want to joi
 
 与此同时我们还将会开发更多的driver。
 
+你发现没？很多开发都是这样。一开始就用一些现成的。后来就自己开发一套，另起炉灶。好吧，继续。。。
+
 
 比如接下来要介绍的networkdriver。
+
+这个主要做的事情就是完成容器的网络环境的配置。比如docker daemon启动的时候创建网桥。以及容器创建的时候为容器分配网络接口资源；以及为容器分配ip、端口并和宿主机做nat端口影射；设置容器的防火墙等等。
 
 
 
