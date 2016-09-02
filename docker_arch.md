@@ -56,6 +56,20 @@ Job就像java中的runnable一样。runnable有run()。  Job也有自己的运�
 
 * Graph
 
+```
+modern word-forming element meaning "instrument for recording; that which writes, marks, or describes; something written," from Greek -graphos "-writing, -writer" (as in autographos "written with one's own hand"), from graphe "writing, the art of writing, a writing," from graphein "to write, express by written characters," earlier "to draw, represent by lines drawn" (see -graphy). Adopted widely (Dutch -graaf, German -graph, French -graphe, Spanish -grafo). Related: -grapher; -graphic; -graphical.
+```
+
+从上面对graph的解释以及词源挖掘。我们发现，graph类似一个画板。你可以在上面写写画画。在graph上有很多个元素。比如有很多点等等。
+
+所以你就能理解docker作者的苦心了。在docker中，graph负责管理所有的image，也就是镜像。这些image，你可以任性的组装叠加来构建出新的镜像。就好像你在画板上画了一层又一层。画了一个鸟，又画了一个鸭。这些鸟和鸭就是一个个image。既然是image，就得存储啊。在docker中，支持多种image的存储方式。比如：aufs、devicemapper、Btrfs等等。
+
+
+＊Driver
+
+现在来看看driver。这个太明显了。既然是一个容器。自然会有驱动了。你是不是已经在想什么网络、存储等等了。没错，这个感觉就对了。
+
+
 
 
 
