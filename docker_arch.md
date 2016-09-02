@@ -108,6 +108,5 @@ Second, we are introducing a new built-in execution driver which is shipping alo
 
 上面介绍的那个execution driver把过去用的LXC driver扔到了边上。这个driver就是基于libcontainer之上的，是一个纯粹的go语言包。我们的开发可以直接去访问kernel的容器api，而不用其他任何依赖。
 
- This drastically reduces the number of moving parts, and insulates Docker from the side-effects introduced across versions and distributions of LXC. In fact, libcontainer delivered such a boost to stability that we decided to make it the default. In other words, as of Docker 0.9, LXC is now optional. To switch back to the LXC driver, simply restart the Docker daemon with docker -d -e lxc. Of course we will continue to support the LXC driver going forward.
-
-很感谢libcontianer。让我们可以开箱即用。必须要任何依赖。不用依赖什么LXC或者其他都底层的一些包，我们就可以使用namespaces，control groups，capabilities，apparmor profiles, network interfaces 以及 firewalling rules。而且libcontainer夹在中间还起到了解耦的作用。
+很感谢libcontianer。让我们可以开箱即用。必须要任何依赖。不用依赖什么LXC或者其他都底层的一些包，我们就可以使用namespaces，control groups，capabilities，apparmor profiles, network interfaces 以及 firewalling rules。而且libcontainer夹在中间还起到了解耦的作用。现在libcontainer已经是docker默认选择了。在0.9之后，
+LXC变为optional。只是一种可选。如果你想回到LXC driver，你只需要restart以下daemon就回到了熟悉而陈旧的过去，通过命令：docker -d -e lxc。虽然libcontainer已经被我们选为皇后。但LXC driver也没有被打入冷宫，在未来的版本中大牛们依然会翻她的牌子。
