@@ -56,7 +56,7 @@ Job就像java中的runnable一样。runnable有run()。  Job也有自己的运�
 
 * Graph
 
-```
+```json
 modern word-forming element meaning "instrument for recording; that which writes, marks, or describes; something written," from Greek -graphos "-writing, -writer" (as in autographos "written with one's own hand"), from graphe "writing, the art of writing, a writing," from graphein "to write, express by written characters," earlier "to draw, represent by lines drawn" (see -graphy). Adopted widely (Dutch -graaf, German -graph, French -graphe, Spanish -grafo). Related: -grapher; -graphic; -graphical.
 ```
 
