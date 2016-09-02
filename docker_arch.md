@@ -70,6 +70,28 @@ modern word-forming element meaning "instrument for recording; that which writes
 
 现在来看看driver。这个太明显了。既然是一个容器。自然会有驱动了。你是不是已经在想什么网络、存储等等了。没错，这个感觉就对了。
 
+docker现在为我们提供了Execution Drivers、graphdriver、networkdriver。
+
+这些驱动都是为容器的运行环境提供服务的。
+
+先来看看这个Execution Drivers。在0.9发布以后，Solomon Hykes 兴致勃勃的在docker官网写了一文，在那里介绍了Execution Drivers：
+
+以下是那天他说的一些话：
+
+Fellow Dockers,
+
+Today we are happy to introduce Docker 0.9. 。。。。。。。blabla。。。。。
+
+First, we are introducing an execution driver API which can be used to customize the execution environment surrounding each container. This allows Docker to take advantage of the numerous isolation tools available, each with their particular tradeoffs and install base: OpenVZ, systemd-nspawn, libvirt-lxc, libvirt-sandbox, qemu/kvm, BSD Jails, Solaris Zones, and even good old chroot. This is in addition to LXC, which will continue to be available as a driver of its own.
+
+There are already several projects underway to develop more drivers. Want to join the fun? Come say hi on #docker-dev on Freenode, and we’ll help you get started.
+
+大体就说自己很开心。说这个driver可以让docker利用多种隔离的工具。这个driver在当时是一个独立的子项目。在0.9之前是通过linux的lxc工具来管理容器的创建。现在我们可以使用这个driver来做这些事情。lxc我们还会继续支持。
+
+与此同时我们还将会开发更多的driver。
+
+
+比如接下来要介绍的networkdriver。
 
 
 
