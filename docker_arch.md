@@ -77,3 +77,7 @@ modern word-forming element meaning "instrument for recording; that which writes
 * libcontainer
 
 ![](static/images/docker/docker-execdriver-diagram.png)
+
+Second, we are introducing a new built-in execution driver which is shipping alongside the LXC driver. This driver is based on libcontainer, a pure Go library which we developed to access the kernel’s container APIs directly, without any other dependencies.
+
+Thanks to libcontainer, Docker out of the box can now manipulate namespaces, control groups, capabilities, apparmor profiles, network interfaces and firewalling rules – all in a consistent and predictable way, and without depending on LXC or any other userland package. This drastically reduces the number of moving parts, and insulates Docker from the side-effects introduced across versions and distributions of LXC. In fact, libcontainer delivered such a boost to stability that we decided to make it the default. In other words, as of Docker 0.9, LXC is now optional. To switch back to the LXC driver, simply restart the Docker daemon with docker -d -e lxc. Of course we will continue to support the LXC driver going forward.
